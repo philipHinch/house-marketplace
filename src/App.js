@@ -4,7 +4,7 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 //pages
 import Explore from './pages/Explore';
-import Offers from './pages/Offers';
+import Offer from './pages/Offer';
 import Profile from './pages/Profile';
 import Signin from './pages/Signin';
 import Signup from './pages/Signup';
@@ -21,7 +21,7 @@ function App() {
       <Router>
         <Routes>
           <Route path='/' element={<Explore />} />
-          <Route path='/offers' element={<Offers />} />
+          <Route path='/offer' element={<Offer />} />
           <Route path='/profile' element={<Signin />} />
           <Route path='/signin' element={<Signin />} />
           <Route path='/signup' element={<Signup />} />

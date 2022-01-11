@@ -21,16 +21,16 @@ const Navbar = () => {
             <nav className="navbarNav">
                 <ul className="navbarListItems">
                     <li className="navbarListItem" onClick={() => navigate('/')}>
-                        <ExploreIcon fill='#2c2c2c' width='36px' height='36px' />
-                        <p>Explore</p>
+                        <ExploreIcon fill={pathMatchRoute('/') ? '#2c2c2c' : '#8f8f8f'} width='36px' height='36px' />
+                        <p className={pathMatchRoute('/') ? 'navbarListItemNameActive' : 'navbarListItemName'}>Explore</p>
                     </li>
-                    <li className="navbarListItem" onClick={() => navigate('/offers')}>
-                        <OfferIcon fill='#2c2c2c' width='36px' height='36px' />
-                        <p>Offer</p>
+                    <li className="navbarListItem" onClick={() => navigate('/offer')}>
+                        <OfferIcon fill={pathMatchRoute('/offer') ? '#2c2c2c' : '#8f8f8f'} width='36px' height='36px' />
+                        <p className={pathMatchRoute('/offer') ? 'navbarListItemNameActive' : 'navbarListItemName'}>Offer</p>
                     </li>
                     <li className="navbarListItem" onClick={() => navigate('/profile')}>
-                        <PersonOutlineIcon fill='#2c2c2c' width='36px' height='36px' />
-                        <p>Profile</p>
+                        <PersonOutlineIcon fill={pathMatchRoute('/profile') ? '#2c2c2c' : '#8f8f8f'} width='36px' height='36px' />
+                        <p className={pathMatchRoute('/profile') ? 'navbarListItemNameActive' : 'navbarListItemName'}>Profile</p>
                     </li>
                 </ul>
             </nav>
