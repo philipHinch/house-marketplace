@@ -1,11 +1,16 @@
+//hooks
 import { useState } from "react";
+//router
 import { Link, useNavigate } from 'react-router-dom';
+//toast
+import { toast } from "react-toastify";
 //icons
 import { ReactComponent as ArrowRightIcon } from "../assets/svg/keyboardArrowRightIcon.svg";
 import visibilityIcon from '../assets/svg/visibilityIcon.svg';
 //firebase
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { db } from '../firebase.config';
+import { setDoc, doc, serverTimestamp } from 'firebase/firestore';
 
 const Signup = () => {
 
@@ -40,10 +45,16 @@ const Signup = () => {
                 displayName: name
             })
 
+            const formDataCopy = { ...formData }
+            delete formDataCopy.password
+            formDataCopy.timestamp = serverTimestamp()
+
+            await setDoc(doc(db, 'users', user.uid), formDataCopy)
+
             navigate('/')
 
         } catch (error) {
-            console.log(error);
+            toast.error('Something went wrong with the registration')
         }
     }
 

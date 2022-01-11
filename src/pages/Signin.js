@@ -1,8 +1,14 @@
+//hooks
 import { useState } from "react";
-import { Link, useNavigate } from 'react-router-dom';
+//router
+import { Link, Navigate, useNavigate } from 'react-router-dom';
+//toast
+import { toast } from "react-toastify";
 //icons
 import { ReactComponent as ArrowRightIcon } from "../assets/svg/keyboardArrowRightIcon.svg";
 import visibilityIcon from '../assets/svg/visibilityIcon.svg';
+//firebase
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 const Signin = () => {
 
@@ -13,11 +19,30 @@ const Signin = () => {
     })
     const { email, password } = formData
 
+    const navigate = useNavigate()
+
     const onChange = (e) => {
         setFormData(prevState => ({
             ...prevState,
             [e.target.id]: e.target.value
         }))
+    }
+
+    const onSubmit = async (e) => {
+        e.preventDefault()
+
+        try {
+            const auth = getAuth()
+
+            const userCredential = await signInWithEmailAndPassword(auth, email, password)
+
+            if (userCredential.user) {
+                navigate('/')
+            }
+
+        } catch (error) {
+            toast.error('Bad User Credentials')
+        }
     }
 
     return (
@@ -27,7 +52,7 @@ const Signin = () => {
                     <p className="pageHeader">Welcome Back!</p>
                 </header>
 
-                <form>
+                <form onSubmit={onSubmit}>
                     <input type="email" placeholder="Email" id="email" value={email} className="emailInput" onChange={(e) => onChange(e)} />
                     <div className="passwordInputDiv">
                         <input type={showPassword ? 'text' : 'password'} className="passwordInput" id="password" placeholder="Password" value={password} onChange={(e) => onChange(e)} />
