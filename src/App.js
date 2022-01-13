@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Explore from './pages/Explore';
 import Offer from './pages/Offer';
 import Profile from './pages/Profile';
+import Category from './pages/Category';
 import Signin from './pages/Signin';
 import Signup from './pages/Signup';
 import ForgotPassword from './pages/ForgotPassword';
@@ -26,6 +27,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Explore />} />
           <Route path='/offer' element={<Offer />} />
+          <Route path='/category/:categoryName' element={<Category />} />
           <Route path='/profile' element={<PrivateRoute />}>
             <Route path='/profile' element={<Profile />} />
           </Route>

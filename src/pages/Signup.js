@@ -37,9 +37,7 @@ const Signup = () => {
 
         try {
             const auth = getAuth()
-
             const userCredential = await createUserWithEmailAndPassword(auth, email, password)
-
             const user = userCredential.user
 
             updateProfile(auth.currentUser, {
