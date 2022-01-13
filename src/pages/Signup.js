@@ -11,6 +11,7 @@ import visibilityIcon from '../assets/svg/visibilityIcon.svg';
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { db } from '../firebase.config';
 import { setDoc, doc, serverTimestamp } from 'firebase/firestore';
+import OAuth from "../components/OAuth";
 
 const Signup = () => {
 
@@ -98,7 +99,7 @@ const Signup = () => {
                     </div>
                 </form>
 
-                {/* {google OAuth} */}
+                <OAuth />
 
                 <Link to='/signin' className="registerLink">
                     Sign In Instead
