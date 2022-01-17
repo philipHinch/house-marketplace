@@ -8,6 +8,9 @@ import { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 //toast
 import { toast } from 'react-toastify';
+//icons
+import arrowRight from '../assets/svg/keyboardArrowRightIcon.svg';
+import homeIcon from '../assets/svg/homeIcon.svg';
 
 
 const Profile = () => {
@@ -93,6 +96,11 @@ const Profile = () => {
                             className={!changeDetails ? 'profileEmail' : 'profileEmailActive'} />
                     </form>
                 </div>
+                <Link to='/create-listing' className='createListing' >
+                    <img src={homeIcon} alt="home" />
+                    <p>Sell or rent your home</p>
+                    <img src={arrowRight} alt="arrow right" />
+                </Link>
             </main >
         </div >
     )
