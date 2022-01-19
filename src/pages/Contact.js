@@ -26,7 +26,6 @@ const Contact = () => {
 
             if (docSnap.exists()) {
                 setLandlord(docSnap.data())
-                console.log('Contacted Landlord');
             } else {
                 toast.error('Could not get landlord data')
             }

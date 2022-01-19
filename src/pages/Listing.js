@@ -10,7 +10,13 @@ import { db } from '../firebase.config';
 import Spinner from '../components/Spinner';
 //icons
 import shareIcon from '../assets/svg/shareIcon.svg';
-
+//leaflet
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+//swiper
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/swiper-bundle.css';
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y])
 
 const Listing = () => {
 
@@ -49,7 +55,14 @@ const Listing = () => {
 
     return (
         <main>
-            {/* {SLIDER} */}
+            {/* SWIPER SLIDER ---> https://swiperjs.com/react */}
+            <Swiper slidesPerView={1} pagination={{ clickable: true }}>
+                {listing.imgUrls.map((url, index) => (
+                    <SwiperSlide key={index}>
+                        <div className="swiperSlideDiv" style={{ background: `url(${ listing.imgUrls[index] }) center no-repeat`, backgroundSize: 'cover' }}></div>
+                    </SwiperSlide>
+                ))}
+            </Swiper>
 
             <div className="shareIconDiv" onClick={() => {
                 navigator.clipboard.writeText(window.location.href)
@@ -87,7 +100,16 @@ const Listing = () => {
 
                 <p className="listingLocationTitle">Location</p>
 
-                {/* {MAP} */}
+                {/* LEAFLET MAP ---> https://leafletjs.com/ */}
+                <div className="leafletContainer">
+                    <MapContainer style={{ height: '100%', width: '100%' }} center={[listing.geolocation.lat, listing.geolocation.lng]} zoom={13} scrollWheelZoom={false}>
+                        <TileLayer attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                            url='https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png' />
+                        <Marker position={[listing.geolocation.lat, listing.geolocation.lng]}>
+                            <Popup>{listing.location}</Popup>
+                        </Marker>
+                    </MapContainer>
+                </div>
 
                 {auth.currentUser?.uid !== listing.userRef && (
                     <Link to={`/contact/${ listing.userRef }?listingName=${ listing.name }`} className="primaryButton">Contact Landlord</Link>
