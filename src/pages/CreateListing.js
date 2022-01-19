@@ -160,12 +160,11 @@ const CreateListing = () => {
             timestamp: serverTimestamp()
         }
 
+        formDataCopy.location = address
         //delete images from formDataCopy since we added imgUrls above
         delete formDataCopy.images
         //delete address fromm formDataCopy 
         delete formDataCopy.address
-        //add location to formDataCopy
-        location && (formDataCopy.location = location)
         //if there is no offer (if offer is false), delete discountedPice from formDataCopy
         !formDataCopy.offer && delete formDataCopy.discountedPrice
 
