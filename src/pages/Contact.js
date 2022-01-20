@@ -18,9 +18,7 @@ const Contact = () => {
     const params = useParams()
 
     useEffect(() => {
-
         const getLandlord = async () => {
-
             const docRef = doc(db, 'users', params.landlordId)
             const docSnap = await getDoc(docRef)
 
@@ -30,7 +28,6 @@ const Contact = () => {
                 toast.error('Could not get landlord data')
             }
         }
-
         getLandlord()
 
     }, [params.landlordId])
