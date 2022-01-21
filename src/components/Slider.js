@@ -51,7 +51,7 @@ const Slider = () => {
     return (
         listings && (
             <>
-                <p className="exploreHeading">Recomended-</p>
+                <p className="exploreHeading">Recomended</p>
 
                 <Swiper slidesPerView={1} pagination={{ clickable: true }}>
                     {listings.map(({ data, id }) => (
